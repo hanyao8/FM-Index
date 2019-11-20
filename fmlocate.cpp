@@ -107,9 +107,15 @@ int main(int argc, char** argv) {
 	start = gettime();
 	for(i=0;i<nqrys;i++) {
 		result = FMIdx->locate(queries[i],strlen((char*)queries[i]),&matches);
-		fprintf(stdout,"%s (%d) : ",queries[i],matches);
-		for(j=0;j<matches-1;j++) fprintf(stdout,"%d ",result[j]);
-		fprintf(stdout,"%d\n",result[matches-1]);
+//		std::cout<<"test 111, matches: "<<matches<<std::endl;
+		if (matches>0){
+		        fprintf(stdout,"%s (%d) : ",queries[i],matches);
+		        for(j=0;j<matches-1;j++) fprintf(stdout,"%d ",result[j]);
+		        fprintf(stdout,"%d\n",result[matches-1]);
+		}
+		else{
+			fprintf(stdout,"%s (0)\n",queries[i]);
+		}
 		free(result);
 	}
 	stop = gettime();
